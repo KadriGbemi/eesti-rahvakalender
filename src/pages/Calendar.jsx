@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Button from '../components/Button';
 import { setFirstDate } from '../redux/_actions';
 
-function Calendar({ setFirstDate }) {
+function Calendar({ setFirstDate , firstDate}) {
   useEffect(() => {
     setFirstDate(new Date());
   }, [setFirstDate]);
@@ -29,10 +29,4 @@ function Calendar({ setFirstDate }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    firstDate: state.firstDate,
-  };
-}
-
-export default connect(mapStateToProps, { setFirstDate })(Calendar);
+export default connect(null, { setFirstDate })(Calendar);
