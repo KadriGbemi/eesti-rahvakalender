@@ -6,15 +6,25 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import Button from '../components/Button';
-import { setFirstDate } from '../redux/_actions';
+import { setDates } from '../redux/_actions';
 
-function Calendar({ setFirstDate , firstDate}) {
+function Calendar({ setDates, firstDate, startDateOfWeek, endDateOfWeek }) {
   useEffect(() => {
-    setFirstDate(new Date());
-  }, [setFirstDate]);
+    setDates(new Date());
+  }, [setDates]);
 
+  function handleDateFormat(date) {
+    return new Intl.DateTimeFormat('en-GB', {
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+    }).format(new Date(date));
+  }
   return (
     <div className='calendar-page'>
+      <p>First Date: {handleDateFormat(firstDate)}</p>
+      <p>Start of Week: {handleDateFormat(startDateOfWeek)}</p>
+      <p>End of Week: {handleDateFormat(endDateOfWeek)}</p>
       <Container fluid>
         <Row>
           <Col>
@@ -29,4 +39,12 @@ function Calendar({ setFirstDate , firstDate}) {
   );
 }
 
-export default connect(null, { setFirstDate })(Calendar);
+function mapStateToProps(state) {
+  return {
+    firstDate: state.firstDate,
+    startDateOfWeek: state.startDateOfWeek,
+    endDateOfWeek: state.endDateOfWeek,
+  };
+}
+
+export default connect(mapStateToProps, { setDates })(Calendar);

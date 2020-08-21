@@ -1,16 +1,16 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
-import { setFirstDate } from '../redux/_actions';
+import { setDates} from '../redux/_actions';
 import PropTypes from 'prop-types';
 
-function ButtonComponent({ name, setFirstDate }) {
+function ButtonComponent({ name, setDates }) {
   return (
     <Button
       variant='primary'
       onClick={(evt) => {
         evt.preventDefault();
-        setFirstDate(new Date());
+        setDates(new Date());
       }}
     >
       {name}
@@ -28,4 +28,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { setFirstDate })(ButtonComponent);
+export default connect(mapStateToProps, { setDates})(ButtonComponent);
