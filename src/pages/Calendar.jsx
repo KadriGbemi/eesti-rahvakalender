@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import Button from '../components/Button';
-function Calendar() {
+import { setFirstDate } from '../redux/_actions';
+
+function Calendar({ setFirstDate }) {
+  useEffect(() => {
+    setFirstDate(new Date());
+  }, [setFirstDate]);
+
   return (
     <div className='calendar-page'>
       <Container fluid>
@@ -22,4 +29,10 @@ function Calendar() {
   );
 }
 
-export default Calendar;
+function mapStateToProps(state) {
+  return {
+    firstDate: state.firstDate,
+  };
+}
+
+export default connect(mapStateToProps, { setFirstDate })(Calendar);
