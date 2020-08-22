@@ -1,8 +1,10 @@
-import { dateTypes } from '../_constants.js';
+import { dateTypes, actionTypes } from '../_constants.js';
 const getOneDay = 1000 * 3600 * 24;
+
 
 export function setDates(dateInput) {
   return function (dispatch) {
+    dispatch({ type: actionTypes.SET_DATES_IS_CALLED, name: "setDates"})
     dispatch(setFirstDate(dateInput));
     dispatch(setStartDateOfWeek(dateInput));
     dispatch(setEndDateOfWeek(dateInput));

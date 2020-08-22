@@ -10,8 +10,12 @@ import { setDates } from '../redux/_actions';
 
 function Calendar({ setDates, firstDate, startDateOfWeek, endDateOfWeek }) {
   useEffect(() => {
-    setDates(new Date());
-  }, [setDates]);
+    console.log('First Date', firstDate);
+    console.log('See First Date', !firstDate);
+    if (!firstDate) {
+      setDates(new Date());
+    }
+  }, [setDates, firstDate]);
 
   function handleDateFormat(date) {
     return new Intl.DateTimeFormat('en-GB', {
@@ -22,9 +26,9 @@ function Calendar({ setDates, firstDate, startDateOfWeek, endDateOfWeek }) {
   }
   return (
     <div className='calendar-page'>
-      <p>First Date: {handleDateFormat(firstDate)}</p>
-      <p>Start of Week: {handleDateFormat(startDateOfWeek)}</p>
-      <p>End of Week: {handleDateFormat(endDateOfWeek)}</p>
+      <p>First Date: {firstDate ? handleDateFormat(firstDate) : firstDate}</p>
+      <p>Start of Week: {startDateOfWeek ? handleDateFormat(startDateOfWeek): startDateOfWeek}</p>
+      <p>End of Week: {endDateOfWeek? handleDateFormat(endDateOfWeek): endDateOfWeek}</p>
       <Container fluid>
         <Row>
           <Col>

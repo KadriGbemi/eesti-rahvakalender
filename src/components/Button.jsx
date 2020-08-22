@@ -10,7 +10,7 @@ function ButtonComponent({ name, updateFirstDate, firstDate }) {
       variant='primary'
       onClick={(evt) => {
         evt.preventDefault();
-        updateFirstDate(firstDate, name);
+        updateFirstDate(new Date(firstDate), name);
       }}
     >
       {name}
