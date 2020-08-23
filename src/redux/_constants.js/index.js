@@ -4,7 +4,6 @@ export const dateTypes = {
   SET_END_DATE_OF_WEEK: 'SET_END_DATE_OF_WEEK',
 };
 
-export const actionTypes = {
+export const inputEventTypes = {
   SET_DATES_IS_CALLED: 'SET_DATES_IS_CALLED',
-  SET_DATES_BY_DAY_IS_CALLED: 'SET_DATES_BY_DAY_IS_CALLED'
 };

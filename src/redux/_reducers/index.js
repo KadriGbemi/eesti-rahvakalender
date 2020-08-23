@@ -1,4 +1,4 @@
-import { dateTypes, actionTypes } from '../_constants.js';
+import { dateTypes, inputEventTypes } from '../_constants.js';
 
 function rootReducer(state = {}, action) {
   switch (action.type) {
@@ -6,11 +6,7 @@ function rootReducer(state = {}, action) {
       return Object.assign({}, state, {
         firstDate: action.date,
       });
-    case actionTypes.SET_DATES_IS_CALLED:
-      return Object.assign({}, state, {
-        actionType: action.name,
-      });
-    case actionTypes.SET_DATES_BY_DAY_IS_CALLED:
+    case inputEventTypes.SET_DATES_IS_CALLED:
       return Object.assign({}, state, {
         actionType: action.name,
       });

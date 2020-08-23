@@ -5,13 +5,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Button from '../components/Button';
+import ButtonComponent from '../components/Button';
 import { setDates } from '../redux/_actions';
+import DropDownComponent from '../components/DropDown';
 
 function Calendar({ setDates, firstDate, startDateOfWeek, endDateOfWeek }) {
   useEffect(() => {
-    console.log('First Date', firstDate);
-    console.log('See First Date', !firstDate);
     if (!firstDate) {
       setDates(new Date());
     }
@@ -26,16 +25,33 @@ function Calendar({ setDates, firstDate, startDateOfWeek, endDateOfWeek }) {
   }
   return (
     <div className='calendar-page'>
-      <p>First Date: {firstDate ? handleDateFormat(firstDate) : firstDate}</p>
-      <p>Start of Week: {startDateOfWeek ? handleDateFormat(startDateOfWeek): startDateOfWeek}</p>
-      <p>End of Week: {endDateOfWeek? handleDateFormat(endDateOfWeek): endDateOfWeek}</p>
       <Container fluid>
         <Row>
           <Col>
-            <Button name='Previous' />
+            <p>
+              First Date: {firstDate ? handleDateFormat(firstDate) : firstDate}
+            </p>
+            <p>
+              Start of Week:{' '}
+              {startDateOfWeek
+                ? handleDateFormat(startDateOfWeek)
+                : startDateOfWeek}
+            </p>
+            <p>
+              End of Week:{' '}
+              {endDateOfWeek ? handleDateFormat(endDateOfWeek) : endDateOfWeek}
+            </p>
+          </Col>
+          {/* <Col>
+            <DropDownComponent />
+          </Col> */}
+        </Row>
+        <Row>
+          <Col>
+            <ButtonComponent name='Previous' />
           </Col>
           <Col>
-            <Button name='Next' />
+            <ButtonComponent name='Next' />
           </Col>
         </Row>
       </Container>

@@ -6,9 +6,10 @@ axios.defaults.baseURL =
 const getApiKey = "7ccf26818346aa6f97f2e9bf0b5f4cdd";
 
 export function getEvents(startDate, endDate) {
-  return axios
-    .get()
-    .then((response) => {
-    //   return response.data;
-    });
+  console.log(`Send request to api, ${startDate}, ${endDate}`);
+  // return axios
+  //   .get()
+  //   .then((response) => {
+  //   //   return response.data;
+  //   });
 }
