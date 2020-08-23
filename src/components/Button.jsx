@@ -1,17 +1,17 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
-import { updateFirstDate, setDatesByDay } from '../redux/_actions';
+import { updateDateSetByDate, setDatesByDay } from '../redux/_actions';
 import PropTypes from 'prop-types';
 
-function ButtonComponent({ name, updateFirstDate, firstDate, actionType }) {
+function ButtonComponent({ name, updateDateSetByDate, firstDate, actionType }) {
   return (
     <Button
       variant='primary'
       onClick={(evt) => {
         evt.preventDefault();
-        actionType === 'setDates'
-          ? updateFirstDate(new Date(firstDate), name)
+        actionType === 'setDatesByDate'
+          ? updateDateSetByDate(new Date(firstDate), name)
           : setDatesByDay(new Date());
       }}
     >
@@ -22,7 +22,7 @@ function ButtonComponent({ name, updateFirstDate, firstDate, actionType }) {
 
 ButtonComponent.propTypes = {
   name: PropTypes.string.isRequired,
-  updateFirstDate: PropTypes.func.isRequired,
+  updateDateSetByDate: PropTypes.func.isRequired,
   actionType: PropTypes.string,
 };
 
@@ -37,4 +37,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { updateFirstDate })(ButtonComponent);
+export default connect(mapStateToProps, { updateDateSetByDate })(ButtonComponent);

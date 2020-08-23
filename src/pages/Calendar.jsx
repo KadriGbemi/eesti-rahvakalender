@@ -6,18 +6,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import ButtonComponent from '../components/Button';
-import { setDates } from '../redux/_actions';
+import { setDatesByDate } from '../redux/_actions';
 import DropDownComponent from '../components/DropDown';
 
-function Calendar({ setDates, firstDate, startDateOfWeek, endDateOfWeek }) {
+function Calendar({ setDatesByDate, firstDate, startDateOfWeek, endDateOfWeek }) {
   useEffect(() => {
     if (!firstDate) {
-      setDates(new Date());
+      setDatesByDate(new Date());
     }
-  }, [setDates, firstDate]);
+  }, [setDatesByDate, firstDate]);
 
   function handleDateFormat(date) {
-    return new Intl.DateTimeFormat('en-GB', {
+    return new Intl.DateTimeFormat(undefined, {
       year: 'numeric',
       month: 'long',
       day: '2-digit',
@@ -67,4 +67,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { setDates })(Calendar);
+export default connect(mapStateToProps, { setDatesByDate })(Calendar);

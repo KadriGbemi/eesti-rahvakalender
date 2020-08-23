@@ -1,7 +1,11 @@
-import { dateTypes, inputEventTypes } from '../_constants.js/index.js';
+import {
+  dateTypes,
+  inputEventTypes,
+  responseTypes,
+} from '../_constants.js/index.js';
 
 export function setStartDateOfWeek(startDateOfWeek) {
-  return { type: dateTypes.SET_START_DATE_OF_WEEK, date: startDateOfWeek }
+  return { type: dateTypes.SET_START_DATE_OF_WEEK, date: startDateOfWeek };
 }
 
 export function setEndDateOfWeek(endDateOfWeek) {
@@ -16,3 +20,10 @@ export function setDatesIsCalled(type) {
   return { type: inputEventTypes.SET_DATES_IS_CALLED, name: type };
 }
 
+export function storeEventsData(data, dispatch) {
+  dispatch({ type: responseTypes.STORE_EVENTS_DATA, payload: data });
+}
+
+export function storeEventsDataError(error, dispatch) {
+  dispatch({ type: responseTypes.STORE_EVENTS_DATA_ERROR, payload: error });
+}

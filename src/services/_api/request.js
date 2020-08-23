@@ -3,13 +3,17 @@ import axios from 'axios';
 axios.defaults.baseURL =
   'https://wozmx9dh26.execute-api.eu-west-1.amazonaws.com/api/holidays';
 
-const getApiKey = "7ccf26818346aa6f97f2e9bf0b5f4cdd";
-
 export function getEvents(startDate, endDate) {
-  console.log(`Send request to api, ${startDate}, ${endDate}`);
-  // return axios
-  //   .get()
-  //   .then((response) => {
-  //   //   return response.data;
-  //   });
+  return axios({
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: {
+      apiKey: '7ccf26818346aa6f97f2e9bf0b5f4cdd',
+      startDate: startDate,
+      endDate: endDate,
+    },
+  });
 }
+
