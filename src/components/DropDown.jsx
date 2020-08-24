@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import PropTypes from 'prop-types';
-import { dayIsSelected } from '../redux/_actions/creators';
+import { setDatesByDay } from '../redux/_actions/';
 
-function DropDownComponent({ holidays, daySelected, dayIsSelected }) {
+function DropDownComponent({ holidays, daySelected, setDatesByDay }) {
   return (
     <DropdownButton
       id='dropdown-basic-button'
@@ -18,9 +18,9 @@ function DropDownComponent({ holidays, daySelected, dayIsSelected }) {
             return (
               <Dropdown.Item
                 key={item}
-                onClick={() => dayIsSelected(holidayDate)}
+                onClick={() => setDatesByDay(holidayDate)}
               >
-                {holidayDate.day}
+                {holidayDate ? holidayDate.day : null}
               </Dropdown.Item>
             );
           })
@@ -34,7 +34,8 @@ DropDownComponent.propTypes = {
 };
 
 DropDownComponent.defaultProps = {
-  daySelected: {day: 'Mon'},
+  daySelected: { day: 'Mon' },
+  holidays: {},
 };
 function mapStateToProps(state) {
   return {
@@ -43,4 +44,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { dayIsSelected })(DropDownComponent);
+export default connect(mapStateToProps, { setDatesByDay })(DropDownComponent);

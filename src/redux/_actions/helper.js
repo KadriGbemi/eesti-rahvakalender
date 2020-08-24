@@ -2,7 +2,8 @@ const getOneDay = 1000 * 3600 * 24;
 const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export function dateFormatToISO(date) {
-  const getMonth = (date.getMonth() + 1).toLocaleString(undefined, {
+  console.log('Date in ISO format', date);
+  const getMonth = (date.getMonth() + 1).toLocaleString('en-US', {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
@@ -13,12 +14,13 @@ export function getDateOfWeek(dateInput, type, day) {
     ? new Date(dateInput.valueOf() - getOneDay * day)
     : new Date(dateInput.valueOf() + getOneDay * day);
 }
-export function getDateRange(startDate, endDate, data) {
+export function getDateRange(startDate, data) {
   const getData = JSON.parse(JSON.stringify(data));
   let i = 0;
-  while (i < endDate.getDay() + 1) {
+  while (i <= 6) {
     const date = getDateOfWeek(startDate, 'dateRange', i);
     const key = dateFormatToISO(date);
+    console.log('key', key);
     const holidayDate = { day: days[i], date };
     getData.holidays[key] = getData.holidays[key]
       ? { holidayDate, holidayType: getData.holidays[key] }

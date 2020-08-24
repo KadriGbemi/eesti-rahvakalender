@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 function CalendarList({ holidays }) {
-  const listItems = holidays.map((item) => {
-    const holidayDate = holidays[item].holidayDate;
-    return <li>{new Date(holidayDate.date)}</li>;
+  const listItems = Object.keys(holidays).map((item) => {
+    const holidayDate = holidays[item].holidayDate ;
+    const holidayType = holidays[item].holidayType;
+    const date = holidayDate ? new Date(holidayDate.date).getDay(): null
+    return (
+      <li key={item}>
+        {holidayType ? holidayType[0].name : date}
+      </li>
+    );
   });
   return <ul>{listItems}</ul>;
 }
@@ -13,6 +19,10 @@ function CalendarList({ holidays }) {
 CalendarList.propTypes = {
   holidays: PropTypes.object,
 };
+
+CalendarList.defaultProps = {
+    holidays: {},
+  };
 
 function mapStateToProps(state) {
   return {

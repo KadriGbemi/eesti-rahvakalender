@@ -8,13 +8,21 @@ import Col from 'react-bootstrap/Col';
 import ButtonComponent from '../components/Button';
 import { setDatesByDate } from '../redux/_actions';
 import DropDownComponent from '../components/DropDown';
+import CalendarList from '../components/calendar/List'
 
-function Calendar({ setDatesByDate, firstDate, startDateOfWeek, endDateOfWeek }) {
+function Calendar({
+  setDatesByDate,
+  firstDate,
+  startDateOfWeek,
+  endDateOfWeek,
+  inputEventType
+}) {
   useEffect(() => {
-    if (!firstDate) {
+    if (!firstDate && inputEventType !== "setDatesByDay") {
       setDatesByDate(new Date());
     }
-  }, [setDatesByDate, firstDate]);
+    // eslint-disable-next-line
+  }, []);
 
   function handleDateFormat(date) {
     return new Intl.DateTimeFormat(undefined, {
@@ -54,6 +62,9 @@ function Calendar({ setDatesByDate, firstDate, startDateOfWeek, endDateOfWeek })
             <ButtonComponent name='Next' />
           </Col>
         </Row>
+        <Row>
+          <CalendarList />
+        </Row>
       </Container>
     </div>
   );
@@ -64,6 +75,7 @@ function mapStateToProps(state) {
     firstDate: state.firstDate,
     startDateOfWeek: state.startDateOfWeek,
     endDateOfWeek: state.endDateOfWeek,
+    inputEventType: state.inputEventType
   };
 }
 

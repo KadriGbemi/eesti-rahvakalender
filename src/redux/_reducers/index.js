@@ -8,7 +8,7 @@ function rootReducer(state = {}, action) {
       });
     case inputEventTypes.SET_DATES_IS_CALLED:
       return Object.assign({}, state, {
-        actionType: action.name,
+        inputEventType: action.name,
       });
     case inputEventTypes.DATE_IS_SELECTED:
       return Object.assign({}, state, {

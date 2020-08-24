@@ -4,15 +4,23 @@ import { connect } from 'react-redux';
 import { updateDateSetByDate, setDatesByDay } from '../redux/_actions';
 import PropTypes from 'prop-types';
 
-function ButtonComponent({ name, updateDateSetByDate, firstDate, actionType }) {
+function ButtonComponent({
+  name,
+  updateDateSetByDate,
+  firstDate,
+  inputEventType,
+  daySelected,
+  setDatesByDay
+}) {
   return (
     <Button
       variant='primary'
       onClick={(evt) => {
         evt.preventDefault();
-        actionType === 'setDatesByDate'
+
+        inputEventType === 'setDatesByDate'
           ? updateDateSetByDate(new Date(firstDate), name)
-          : setDatesByDay(new Date());
+          : setDatesByDay(daySelected);
       }}
     >
       {name}
@@ -23,18 +31,22 @@ function ButtonComponent({ name, updateDateSetByDate, firstDate, actionType }) {
 ButtonComponent.propTypes = {
   name: PropTypes.string.isRequired,
   updateDateSetByDate: PropTypes.func.isRequired,
-  actionType: PropTypes.string,
+  inputEventType: PropTypes.string,
 };
 
 ButtonComponent.defaultProps = {
-  actionType: null,
+  inputEventType: null,
+  daySelected: {},
 };
 
 function mapStateToProps(state) {
   return {
     firstDate: state.firstDate,
-    actionType: state.actionType,
+    inputEventType: state.inputEventType,
+    daySelected: state.daySelected,
   };
 }
 
-export default connect(mapStateToProps, { updateDateSetByDate })(ButtonComponent);
+export default connect(mapStateToProps, { updateDateSetByDate, setDatesByDay })(
+  ButtonComponent
+);
