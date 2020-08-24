@@ -42,9 +42,9 @@ function Calendar({ setDatesByDate, firstDate, startDateOfWeek, endDateOfWeek })
               {endDateOfWeek ? handleDateFormat(endDateOfWeek) : endDateOfWeek}
             </p>
           </Col>
-          {/* <Col>
+          <Col>
             <DropDownComponent />
-          </Col> */}
+          </Col>
         </Row>
         <Row>
           <Col>

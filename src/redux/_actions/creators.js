@@ -20,6 +20,18 @@ export function setDatesIsCalled(type) {
   return { type: inputEventTypes.SET_DATES_IS_CALLED, name: type };
 }
 
+export function datesIsSelected(date) {
+  return function (dispatch) {
+    dispatch({ type: inputEventTypes.DATE_IS_SELECTED, payload: date });
+  };
+}
+
+export function dayIsSelected(date) {
+  return function (dispatch) {
+    dispatch({ type: inputEventTypes.DAY_IS_SELECTED, payload: date });
+  };
+}
+
 export function storeEventsData(data, dispatch) {
   dispatch({ type: responseTypes.STORE_EVENTS_DATA, payload: data });
 }

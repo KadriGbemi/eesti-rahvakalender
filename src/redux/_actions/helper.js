@@ -19,11 +19,11 @@ export function getDateRange(startDate, endDate, data) {
   while (i < endDate.getDay() + 1) {
     const date = getDateOfWeek(startDate, 'dateRange', i);
     const key = dateFormatToISO(date);
+    const holidayDate = { day: days[i], date };
     getData.holidays[key] = getData.holidays[key]
-      ? getData.holidays[key]
-      : date;
-      getData[days[i]] = { day: days[i], date };
+      ? { holidayDate, holidayType: getData.holidays[key] }
+      : { holidayDate, holidayType: null };
     i++;
   }
-  return getData;
+  return getData.holidays;
 }

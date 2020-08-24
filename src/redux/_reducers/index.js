@@ -10,6 +10,14 @@ function rootReducer(state = {}, action) {
       return Object.assign({}, state, {
         actionType: action.name,
       });
+    case inputEventTypes.DATE_IS_SELECTED:
+      return Object.assign({}, state, {
+        dateSelected: action.payload,
+      });
+    case inputEventTypes.DAY_IS_SELECTED:
+      return Object.assign({}, state, {
+        daySelected: action.payload,
+      });
     case dateTypes.SET_START_DATE_OF_WEEK:
       return Object.assign({}, state, {
         startDateOfWeek: action.date,
@@ -20,7 +28,7 @@ function rootReducer(state = {}, action) {
       });
     case responseTypes.STORE_EVENTS_DATA:
       return Object.assign({}, state, {
-        events: action.payload,
+        holidays: action.payload,
       });
     case responseTypes.STORE_EVENTS_DATA_ERROR:
       return Object.assign({}, state, {

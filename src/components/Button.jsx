@@ -27,7 +27,7 @@ ButtonComponent.propTypes = {
 };
 
 ButtonComponent.defaultProps = {
-  actionType: 'setDates',
+  actionType: null,
 };
 
 function mapStateToProps(state) {

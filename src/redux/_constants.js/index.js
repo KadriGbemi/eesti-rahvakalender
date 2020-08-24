@@ -6,6 +6,8 @@ export const dateTypes = {
 
 export const inputEventTypes = {
   SET_DATES_IS_CALLED: 'SET_DATES_IS_CALLED',
+  DAY_IS_SELECTED: 'DAY_IS_SELECTED',
+  DATE_IS_SELECTED: 'DATE_IS_SELECTED',
 };
 
 export const responseTypes = {

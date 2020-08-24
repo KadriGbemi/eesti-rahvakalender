@@ -18,7 +18,7 @@ async function getEventsRequest(
 ) {
   try {
     const response = await getEvents(startDate, endDate);
-    if (response) {
+    if (response && response.data && response.data.error === false) {
       return storeEventsData(
         getDateRange(startDateNoFormat, endDateNoFormat, response.data),
         dispatch
