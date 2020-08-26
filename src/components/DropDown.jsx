@@ -18,7 +18,11 @@ function DropDownComponent({ holidays, daySelected, setDatesByDay }) {
             return (
               <Dropdown.Item
                 key={item}
-                onClick={() => setDatesByDay(holidayDate)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log('Clicked');
+                  setDatesByDay(holidayDate);
+                }}
               >
                 {holidayDate ? holidayDate.day : null}
               </Dropdown.Item>

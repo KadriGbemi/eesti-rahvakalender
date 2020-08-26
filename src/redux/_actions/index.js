@@ -1,16 +1,21 @@
 import {
+  setDateSelected,
+  setDaySelected,
   setStartDateOfWeek,
   setEndDateOfWeek,
-  setFirstDate,
   setDatesIsCalled,
   storeEventsData,
   storeEventsDataError,
-  dayIsSelected,
 } from './creators';
-import { getDateOfWeek, dateFormat, getDateRange } from './helper';
+import { getDateOfWeek, dateFormat, getDateRange, days } from './helper';
 import { getEvents } from '../../services/_api/request.js';
 
-async function getEventsRequest(startDate, endDate, startDateNoFormat, dispatch) {
+async function getEventsRequest(
+  startDate,
+  endDate,
+  startDateNoFormat,
+  dispatch
+) {
   try {
     const response = await getEvents(startDate, endDate);
     if (response && response.data && response.data.error === false) {
@@ -38,7 +43,7 @@ export function setDatesByDate(dateInput) {
   const endDateOfWeek = getDateOfWeek(dateInput, 'end', getEndDay);
   return function (dispatch) {
     dispatch(setDatesIsCalled('setDatesByDate'));
-    dispatch(setFirstDate(dateInput));
+    dispatch(setDateSelected(dateInput));
     dispatch(setStartDateOfWeek(startDateOfWeek));
     dispatch(setEndDateOfWeek(endDateOfWeek));
     dispatch(handleGetEventsRequest(startDateOfWeek, endDateOfWeek));
@@ -47,25 +52,37 @@ export function setDatesByDate(dateInput) {
 
 export function setDatesByDay(dateObj) {
   const dateInput = new Date(dateObj.date);
+  const startDateOfWeek = dateInput;
+  const endDateOfWeek = getDateOfWeek(dateInput, 'end', 6);
   return function (dispatch) {
-    dispatch(dayIsSelected(dateObj));
+    dispatch(setDaySelected(dateObj));
     dispatch(setDatesIsCalled('setDatesByDay'));
-    dispatch(setFirstDate(null));
-    dispatch(setStartDateOfWeek(dateInput));
-
-    console.log('dateInputbyday', dateInput);
-    const endDateOfWeek = getDateOfWeek(dateInput, 'end', 7);
-    console.log('byday-endDateOfWeek', endDateOfWeek);
+    dispatch(setDateSelected(null));
+    dispatch(setStartDateOfWeek(startDateOfWeek));
     dispatch(setEndDateOfWeek(endDateOfWeek));
     dispatch(handleGetEventsRequest(dateInput, endDateOfWeek));
   };
 }
-export function updateDateSetByDate(dateInput, type) {
+
+function handleSetByDateUpdate(type, dateInput, dispatch) {
   const getFirstDate =
     type === 'Previous'
       ? getDateOfWeek(dateInput, 'start', 7)
       : getDateOfWeek(dateInput, 'end', 7);
+  return dispatch(setDatesByDate(new Date(getFirstDate)));
+}
+
+export function updateDates(dateInput, type, inputEventType) {
+  const dateCopy = JSON.parse(JSON.stringify(dateInput));
   return function (dispatch) {
-    dispatch(setDatesByDate(new Date(getFirstDate)));
+    if (inputEventType === 'setDatesByDate') {
+      return handleSetByDateUpdate(type, dateInput, dispatch);
+    }
+    dateCopy['date'] =
+      type === 'Previous'
+        ? getDateOfWeek(dateInput.date, 'start', 6)
+        : getDateOfWeek(dateInput.date, 'end', 6);
+    dateCopy['day'] = days[new Date(dateCopy['date']).getDay()];
+    dispatch(setDatesByDay(dateCopy));
   };
 }
