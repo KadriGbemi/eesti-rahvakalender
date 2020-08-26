@@ -7,7 +7,7 @@ import {
   storeEventsDataError,
   dayIsSelected,
 } from './creators';
-import { getDateOfWeek, dateFormatToISO, getDateRange } from './helper';
+import { getDateOfWeek, dateFormat, getDateRange } from './helper';
 import { getEvents } from '../../services/_api/request.js';
 
 async function getEventsRequest(startDate, endDate, startDateNoFormat, dispatch) {
@@ -25,8 +25,8 @@ async function getEventsRequest(startDate, endDate, startDateNoFormat, dispatch)
 }
 
 function handleGetEventsRequest(startDateOfWeek, endDateOfWeek) {
-  const startDate = dateFormatToISO(startDateOfWeek);
-  const endDate = dateFormatToISO(endDateOfWeek);
+  const startDate = dateFormat(startDateOfWeek);
+  const endDate = dateFormat(endDateOfWeek);
   return function (dispatch) {
     getEventsRequest(startDate, endDate, startDateOfWeek, dispatch);
   };
