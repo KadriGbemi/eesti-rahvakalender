@@ -16,9 +16,11 @@ function ButtonComponent({
       variant='primary'
       onClick={(evt) => {
         evt.preventDefault();
-
+        console.log('Onclick', daySelected);
+        console.log('Onclick name', name);
+        console.log('Onclick inputEventType',inputEventType);
         inputEventType === 'setDatesByDate'
-          ? updateDates(new Date(dateSelected), name, inputEventType)
+          ? updateDates(dateSelected, name, inputEventType)
           : updateDates(daySelected, name, inputEventType);
       }}
     >
@@ -48,6 +50,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { updateDates })(
-  ButtonComponent
-);
+export default connect(mapStateToProps, { updateDates })(ButtonComponent);

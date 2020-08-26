@@ -12,13 +12,13 @@ import CalendarList from '../components/calendar/List'
 
 function Calendar({
   setDatesByDate,
-  firstDate,
+  dateSelected,
   startDateOfWeek,
   endDateOfWeek,
   inputEventType
 }) {
   useEffect(() => {
-    if (!firstDate && inputEventType !== "setDatesByDay") {
+    if (!dateSelected && inputEventType !== "setDatesByDay") {
       setDatesByDate(new Date());
     }
     // eslint-disable-next-line
@@ -37,7 +37,7 @@ function Calendar({
         <Row>
           <Col>
             <p>
-              First Date: {firstDate ? handleDateFormat(firstDate) : firstDate}
+              Date Selected: {dateSelected ? handleDateFormat(dateSelected) : dateSelected}
             </p>
             <p>
               Start of Week:{' '}
@@ -51,7 +51,7 @@ function Calendar({
             </p>
           </Col>
           <Col>
-            <DropDownComponent />
+          First Day of the Week: <DropDownComponent />
           </Col>
         </Row>
         <Row>
@@ -72,7 +72,7 @@ function Calendar({
 
 function mapStateToProps(state) {
   return {
-    firstDate: state.firstDate,
+    dateSelected: state.dateSelected,
     startDateOfWeek: state.startDateOfWeek,
     endDateOfWeek: state.endDateOfWeek,
     inputEventType: state.inputEventType

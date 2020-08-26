@@ -13,9 +13,10 @@ export function dateFormat(date) {
   return date.getFullYear() + '-' + getMonth + '-' + getDate;
 }
 export function getDateOfWeek(dateInput, type, day) {
+  const date = new Date(dateInput);
   return type === 'start'
-    ? new Date(dateInput.valueOf() - getOneDay * day)
-    : new Date(dateInput.valueOf() + getOneDay * day);
+    ? new Date(date.valueOf() - getOneDay * day)
+    : new Date(date.valueOf() + getOneDay * day);
 }
 export function getDateRange(startDate, data) {
   const getData = JSON.parse(JSON.stringify(data));
