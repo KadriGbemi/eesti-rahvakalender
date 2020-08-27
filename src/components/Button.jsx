@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import { updateDates } from '../redux/_actions';
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 function ButtonComponent({
@@ -13,18 +14,29 @@ function ButtonComponent({
 }) {
   return (
     <Button
-      variant='primary'
+      variant='outline-primary'
       onClick={(evt) => {
         evt.preventDefault();
         console.log('Onclick', daySelected);
         console.log('Onclick name', name);
-        console.log('Onclick inputEventType',inputEventType);
-        inputEventType === 'setDatesByDate'
+        console.log('Onclick inputEventType', inputEventType);
+        inputEventType === 'setDatesByDate' || name === 'Today'
           ? updateDates(dateSelected, name, inputEventType)
           : updateDates(daySelected, name, inputEventType);
       }}
     >
-      {name}
+      {name === 'Previous' ? (
+        <span>
+          {' '}
+          <AiOutlineDoubleLeft /> {name}
+        </span>
+      ) : name === 'Today' ? (
+        name
+      ) : (
+        <span>
+          {name} <AiOutlineDoubleRight />
+        </span>
+      )}
     </Button>
   );
 }
