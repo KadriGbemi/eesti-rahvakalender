@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Table from 'react-bootstrap/Table';
 
 import ButtonComponent from '../components/Button';
 import { setDatesByDate } from '../redux/_actions';
@@ -63,66 +62,6 @@ function Calendar({
             </Row>
           </Col>
         </Row>
-        <Row className='my-4'>
-          <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-            <div className='w-100 h-50 d-inline-block'>
-              <p style={{ backgroundColor: '#ddd', textAlign:'center' }}>Tue 24</p>
-            </div>
-            <div className='w-100 h-50 d-inline-block' style={{ textAlign:'center' }}>
-              <h5>25</h5>
-            </div>
-          </Col>
-          <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-            <div className='w-100 h-50 d-inline-block'>
-              <p style={{ backgroundColor: '#ddd', textAlign:'center' }}>Tue 24</p>
-            </div>
-            <div className='w-100 h-50 d-inline-block' style={{ textAlign:'center' }}>
-              <h5>25</h5>
-            </div>
-          </Col>
-          <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-            <div className='w-100 h-50 d-inline-block'>
-              <p style={{ backgroundColor: '#ddd', textAlign:'center' }}>Tue 24</p>
-            </div>
-            <div className='w-100 h-50 d-inline-block' style={{ textAlign:'center' }}>
-              <h5>25</h5>
-            </div>
-          </Col>
-          <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-            <div className='w-100 h-50 d-inline-block'>
-              <p style={{ backgroundColor: '#ddd', textAlign:'center' }}>Tue 24</p>
-            </div>
-            <div className='w-100 h-50 d-inline-block' style={{ textAlign:'center' }}>
-              <h5>25</h5>
-            </div>
-          </Col>
-          <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-            <div className='w-100 h-50 d-inline-block'>
-              <p style={{ backgroundColor: '#ddd', textAlign:'center' }}>Tue 24</p>
-            </div>
-            <div className='w-100 h-50 d-inline-block' style={{ textAlign:'center' }}>
-              <h5>25</h5>
-            </div>
-          </Col>
-          <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-            <div className='w-100 h-50 d-inline-block'>
-              <p style={{ backgroundColor: '#ddd', textAlign:'center' }}>Tue 24</p>
-            </div>
-            <div className='w-100 h-50 d-inline-block' style={{ textAlign:'center' }}>
-              <h5>25</h5>
-            </div>
-          </Col>
-          <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-            <div className='w-100 h-50 d-inline-block'>
-              <p style={{ backgroundColor: '#ddd', textAlign:'center' }}>Tue 24</p>
-            </div>
-            <div className='w-100 h-50 d-inline-block' style={{ textAlign:'center' }}>
-              <h5>25</h5>
-            </div>
-          </Col>
-
-        </Row>
-
         {/* <CalendarList /> */}
       </Container>
     </div>

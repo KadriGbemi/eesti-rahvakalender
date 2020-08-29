@@ -1,22 +1,27 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 
-function CalendarItem(props) {
+function CalendarItem({holidayDay, holidayTypes}) {
+  // const getCalendarList = holidayTypes.map((type) => {
+  //   return (
+  //     <Row key={item} className='my-4'>
+  //       <CalendarItem holidayTypes={holidayTypes} holidayDay={holidayDay}/>
+  //     </Row>
+  //   );
+  // });
   return (
-    <Container>
-      <Row>
-        <Col>1 of 2</Col>
-        <Col>2 of 2</Col>
-      </Row>
-      <Row>
-        <Col>1 of 3</Col>
-        <Col>2 of 3</Col>
-        <Col>3 of 3</Col>
-      </Row>
-    </Container>
+    <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
+        <div className='w-100 h-50 d-inline-block'>
+          <p style={{ backgroundColor: '#ddd', textAlign: 'center' }}>Tue 24</p>
+        </div>
+        <div
+          className='w-100 h-50 d-inline-block'
+          style={{ textAlign: 'center' }}
+        >
+          <h5>25</h5>
+        </div>
+      </Col>
   );
 }
 

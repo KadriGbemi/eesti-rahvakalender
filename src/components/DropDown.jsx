@@ -24,7 +24,11 @@ function DropDownComponent({ holidays, daySelected, setDatesByDay }) {
                   setDatesByDay(holidayDate);
                 }}
               >
-                {holidayDate ? holidayDate.day : null}
+                {holidayDate
+                  ? holidayDate.day && holidayDate.day !== daySelected.day
+                    ? holidayDate.day
+                    : null
+                  : null}
               </Dropdown.Item>
             );
           })

@@ -38,11 +38,15 @@ function handleGetEventsRequest(startDateOfWeek, endDateOfWeek) {
 }
 
 export function setDatesByDate(dateInput) {
+  console.log('Check date selected', dateInput);
   const startDateOfWeek = getDateOfWeek(dateInput, 'start', dateInput.getDay());
   const getEndDay = 6 - dateInput.getDay();
   const endDateOfWeek = getDateOfWeek(dateInput, 'end', getEndDay);
   return function (dispatch) {
     dispatch(setDatesIsCalled('setDatesByDate'));
+    dispatch(
+      setDaySelected({ day: days[dateInput.getDay()], date: dateInput })
+    );
     dispatch(setDateSelected(dateInput));
     dispatch(setStartDateOfWeek(startDateOfWeek));
     dispatch(setEndDateOfWeek(endDateOfWeek));
@@ -51,6 +55,7 @@ export function setDatesByDate(dateInput) {
 }
 
 export function setDatesByDay(dateObj) {
+  console.log('Set by day', dateObj);
   const dateInput = dateObj.date;
   const endDateOfWeek = getDateOfWeek(dateInput, 'end', 6);
   return function (dispatch) {
@@ -64,25 +69,38 @@ export function setDatesByDay(dateObj) {
 }
 
 function handleSetByDateUpdate(type, dateInput, dispatch) {
-  const getFirstDate =
-    type === 'Previous'
-      ? getDateOfWeek(dateInput, 'start', 7)
-      : getDateOfWeek(dateInput, 'end', 7);
+  console.log('See Type update', dateInput);
+  let getFirstDate;
+  if (type === 'Today') {
+    getFirstDate = dateInput;
+  } else {
+    getFirstDate =
+      type === 'Previous'
+        ? getDateOfWeek(dateInput, 'start', 7)
+        : getDateOfWeek(dateInput, 'end', 7);
+  }
   return dispatch(setDatesByDate(getFirstDate));
 }
 
+function handleSetByDayUpdate(type, dateInput, dispatch) {
+  const dateObj = JSON.parse(JSON.stringify(dateInput));
+  dateObj['day'] = days[new Date(dateObj['date']).getDay()];
+  if (type === 'Previous') {
+    dateObj['date'] = getDateOfWeek(dateInput.date, 'start', 6);
+  } else {
+    dateObj['date'] = getDateOfWeek(dateInput.date, 'end', 6);
+  }
+  return dispatch(setDatesByDay(dateObj));
+}
+
 export function updateDates(dateInput, type, inputEventType) {
+  console.log(`date input${dateInput}, type: ${type}`);
   return function (dispatch) {
     if (inputEventType === 'setDatesByDate') {
       return handleSetByDateUpdate(type, dateInput, dispatch);
     }
-    const dateCopy = JSON.parse(JSON.stringify(dateInput));
-    if (type === 'Previous') {
-      dateCopy['date'] = getDateOfWeek(dateInput.date, 'start', 6);
-    } else {
-      dateCopy['date'] = getDateOfWeek(dateInput.date, 'end', 6);
-    }
-    dateCopy['day'] = days[new Date(dateCopy['date']).getDay()];
-    dispatch(setDatesByDay(dateCopy));
+    type === 'Today'
+      ? dispatch(setDatesByDate(dateInput))
+      : handleSetByDayUpdate(type, dateInput, dispatch);
   };
 }

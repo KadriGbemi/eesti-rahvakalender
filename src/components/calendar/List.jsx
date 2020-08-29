@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Row from 'react-bootstrap/Row';
+import CalendarItem from './Item';
 
 function CalendarList({ holidays }) {
-  const listItems = Object.keys(holidays).map((item) => {
-    const holidayDate = holidays[item].holidayDate ;
-    const holidayType = holidays[item].holidayType;
-    const date = holidayDate ? new Date(holidayDate.date).getDay(): null
+  const getCalendarList = Object.keys(holidays).map((item) => {
+    const holidayDate = holidays[item].holidayDate;
+    const holidayTypes = holidays[item].holidayType;
+    const holidayDay = holidayDate ? new Date(holidayDate.date).getDay() : null;
     return (
-      <li key={item}>
-        {holidayType ? holidayType[0].name : date}
-      </li>
+      <Row key={item} className='my-4'>
+        <CalendarItem holidayTypes={holidayTypes} holidayDay={holidayDay}/>
+      </Row>
     );
   });
-  return <ul>{listItems}</ul>;
+  return { getCalendarList };
 }
 
 CalendarList.propTypes = {
@@ -21,8 +23,8 @@ CalendarList.propTypes = {
 };
 
 CalendarList.defaultProps = {
-    holidays: {},
-  };
+  holidays: {},
+};
 
 function mapStateToProps(state) {
   return {

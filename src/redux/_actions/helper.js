@@ -7,7 +7,8 @@ export function dateFormatToISO(value) {
     useGrouping: false,
   });
 }
-export function dateFormat(date) {
+export function dateFormat(dateInput) {
+  const date = new Date(dateInput);
   const getMonth = dateFormatToISO(date.getMonth() + 1);
   const getDate = dateFormatToISO(date.getDate());
   return date.getFullYear() + '-' + getMonth + '-' + getDate;

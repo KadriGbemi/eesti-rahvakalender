@@ -21,7 +21,7 @@ function ButtonComponent({
         console.log('Onclick name', name);
         console.log('Onclick inputEventType', inputEventType);
         inputEventType === 'setDatesByDate' || name === 'Today'
-          ? updateDates(dateSelected, name, inputEventType)
+          ? updateDates(name === 'Today'? new Date() : dateSelected, name, inputEventType)
           : updateDates(daySelected, name, inputEventType);
       }}
     >
