@@ -8,14 +8,15 @@ function CalendarList({ holidays }) {
   const getCalendarList = Object.keys(holidays).map((item) => {
     const holidayDate = holidays[item].holidayDate;
     const holidayTypes = holidays[item].holidayType;
-    const holidayDay = holidayDate ? new Date(holidayDate.date).getDay() : null;
     return (
-      <Row key={item} className='my-4'>
-        <CalendarItem holidayTypes={holidayTypes} holidayDay={holidayDay}/>
-      </Row>
+        <CalendarItem  key={item} holidayTypes={holidayTypes} holidayDate={holidayDate} />
     );
   });
-  return { getCalendarList };
+  return (
+    <Row className='my-4'>
+      {getCalendarList}
+    </Row>
+  );
 }
 
 CalendarList.propTypes = {

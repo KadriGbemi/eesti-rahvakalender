@@ -1,30 +1,70 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-function CalendarItem({holidayDay, holidayTypes}) {
-  // const getCalendarList = holidayTypes.map((type) => {
-  //   return (
-  //     <Row key={item} className='my-4'>
-  //       <CalendarItem holidayTypes={holidayTypes} holidayDay={holidayDay}/>
-  //     </Row>
-  //   );
-  // });
-  return (
+function handleDateFormat(dateObj) {
+  console.log('Date format Item', dateObj.date);
+  return new Intl.DateTimeFormat(undefined, {
+    year: 'numeric',
+    month: 'numeric',
+    day: '2-digit',
+  }).format(new Date(dateObj.date));
+}
+function CalendarItem({ holidayDate, holidayTypes, daySelected }) {
+  const holidayDay = holidayDate ? new Date(holidayDate.date).getDate() : null;
+  console.log('Calendar Item', holidayDate);
+  const getEvents = (holidayTypes || []).map((type) => {
+    return (
+      <Card
+        key={type}
+        pill
+        variant='primary'
+        className='py-3'
+        style={{
+          textAlign: 'center',
+          backgroundColor: '#eb9269',
+          color: '#fdf4f0',
+        }}
+      >
+        {type.name}
+      </Card>
+    );
+  });
+  return holidayDate ? (
     <Col xs={12} sm className='px-0' style={{ border: '0.5px solid #ddd' }}>
-        <div className='w-100 h-50 d-inline-block'>
-          <p style={{ backgroundColor: '#ddd', textAlign: 'center' }}>Tue 24</p>
-        </div>
-        <div
-          className='w-100 h-50 d-inline-block'
-          style={{ textAlign: 'center' }}
+      <div className='w-100 h-25 d-inline-block'>
+        <p
+          style={{
+            backgroundColor: '#346175',
+            color: '#d6dfe3',
+            textAlign: 'center',
+          }}
         >
-          <h5>25</h5>
-        </div>
-      </Col>
-  );
+          {handleDateFormat(holidayDate)}
+        </p>
+      </div>
+      <div className='w-100 h-75 d-inline-block py-3 px-1'>
+        {holidayTypes ? (
+          getEvents
+        ) : (
+          <h5
+            className='py-3'
+            style={{ textAlign: 'center', color: '#4987a4' }}
+          >
+            {holidayDay}
+          </h5>
+        )}
+      </div>
+    </Col>
+  ) : null;
 }
 
-CalendarItem.propTypes = {};
+function mapStateToProps(state) {
+  return {
+    daySelected: state.daySelected,
+  };
+}
 
-export default CalendarItem;
+export default connect(mapStateToProps, null)(CalendarItem);

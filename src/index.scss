@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/bootstrap';
+@import './styles/custom.scss';
 
 body {
   margin: 0;
@@ -8,9 +8,11 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Open Sans', Arial,
     sans-serif;
   font-size: 14px;
-  color: #1f3a46;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  strong{
+    font-weight: 600;
+  }
 }
 
 code {

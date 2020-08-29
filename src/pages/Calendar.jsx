@@ -38,31 +38,36 @@ function Calendar({
       <Container>
         <CalendarHeader />
         <Row className='px-2 my-4'>
-          <Col sm={3} md={6}>
+          <Col xs={6} sm={3} md={6}>
             <Row>
-              <p className='mx-2 my-2'> First Day:</p>
+              <strong>
+                <p className='mx-2 my-2'> First Day:</p>
+              </strong>
               <span>
                 <DropDownComponent />
               </span>
             </Row>
           </Col>
-          <Col sm={9} md={6}>
+          <Col xs={6} sm={9} md={6}>
             <Row className='justify-content-end'>
               <ButtonComponent name='Previous' />
-              <span className='mx-2 my-2'>
-                {inputEventType === 'setDatesByDay'
-                  ? startDateOfWeek
-                    ? handleDateFormat(startDateOfWeek)
-                    : startDateOfWeek
-                  : dateSelected
-                  ? handleDateFormat(dateSelected)
-                  : dateSelected}
-              </span>
+              <strong className='mx-2 my-2'>
+                {' '}
+                <span>
+                  {inputEventType === 'setDatesByDay'
+                    ? startDateOfWeek
+                      ? handleDateFormat(startDateOfWeek)
+                      : startDateOfWeek
+                    : dateSelected
+                    ? handleDateFormat(dateSelected)
+                    : dateSelected}
+                </span>
+              </strong>
               <ButtonComponent name='Next' />
             </Row>
           </Col>
         </Row>
-        {/* <CalendarList /> */}
+        <CalendarList />
       </Container>
     </div>
   );
