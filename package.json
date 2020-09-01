@@ -29,17 +29,17 @@
     "lint:fix": "npm run lint -- --fix",
     "validate": "npm run prettier -- --list-different && npm run lint"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "**/*.{js,jsx,scss}": [
       "npm run format",
       "npm run lint:fix",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
