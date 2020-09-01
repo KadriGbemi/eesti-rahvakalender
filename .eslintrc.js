@@ -11,7 +11,7 @@ module.exports = {
   },
   rules: {
     "no-undef": 0,
-    "no-console": "error",
+    "no-console": "warn",
     "react/prop-types": ["error", { skipUndeclared: true }]
   }
 };
