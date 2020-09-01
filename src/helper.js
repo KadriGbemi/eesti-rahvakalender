@@ -31,5 +31,11 @@ export function getDateRange(startDate, data) {
       : { holidayDate, holidayType: null };
     i++;
   }
-  return getData.holidays;
+  return getData.holidays
+}
+
+export function handleDateFormat(dateInput, options) {
+  return new Intl.DateTimeFormat(undefined, options).format(
+    new Date(dateInput.date || dateInput)
+  );
 }

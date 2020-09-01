@@ -4,35 +4,49 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import PropTypes from 'prop-types';
 import { setDatesByDay } from '../redux/_actions/';
+import { handleDateFormat } from '../helper';
 
-function DropDownComponent({ holidays, daySelected, setDatesByDay }) {
+function DropDownComponent({
+  holidays,
+  daySelected,
+  setDatesByDay,
+  holidayKeys,
+}) {
+  function handleDateDisplay(dateInput) {
+    return (
+      dateInput.day +
+      ' - ' +
+      handleDateFormat(dateInput, {
+        month: 'short',
+        day: 'numeric',
+      })
+    );
+  }
   return (
     <DropdownButton
       id='dropdown-basic-button'
       variant='outline-primary'
-      title={daySelected.day}
+      title={handleDateDisplay(daySelected)}
     >
-      {holidays
-        ? Object.keys(holidays).map((item) => {
-            const holidayDate = holidays[item].holidayDate;
-            return (
-              <Dropdown.Item
-                key={item}
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log('Clicked');
-                  setDatesByDay(holidayDate);
-                }}
-              >
-                {holidayDate
-                  ? holidayDate.day && holidayDate.day !== daySelected.day
-                    ? holidayDate.day
-                    : null
-                  : null}
-              </Dropdown.Item>
-            );
-          })
-        : null}
+      {(holidayKeys || []).map((item) => {
+        const holidayDate = holidays[item].holidayDate;
+        return (
+          <Dropdown.Item
+            key={item}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log('Clicked');
+              setDatesByDay(holidayDate);
+            }}
+          >
+            {holidayDate
+              ? holidayDate.day && holidayDate.day !== daySelected.day
+                ? handleDateDisplay(holidayDate)
+                : null
+              : null}
+          </Dropdown.Item>
+        );
+      })}
     </DropdownButton>
   );
 }
@@ -42,12 +56,13 @@ DropDownComponent.propTypes = {
 };
 
 DropDownComponent.defaultProps = {
-  daySelected: { day: 'Mon' },
+  daySelected: { day: 'Mon', date: new Date() },
   holidays: {},
 };
 function mapStateToProps(state) {
   return {
     holidays: state.holidays,
+    holidayKeys: state.holidayKeys,
     daySelected: state.daySelected,
   };
 }

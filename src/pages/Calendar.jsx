@@ -10,7 +10,7 @@ import { setDatesByDate } from '../redux/_actions';
 import DropDownComponent from '../components/DropDown';
 import CalendarList from '../components/calendar/List';
 import CalendarHeader from '../components/calendar/Header';
-import { AiOutlineInsertRowLeft } from 'react-icons/ai';
+import { handleDateFormat } from '../helper';
 
 function Calendar({
   setDatesByDate,
@@ -26,13 +26,11 @@ function Calendar({
     // eslint-disable-next-line
   }, []);
 
-  function handleDateFormat(date) {
-    return new Intl.DateTimeFormat(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-    }).format(new Date(date));
-  }
+  const dateOptions = {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+  };
   return (
     <div className='calendar-page'>
       <Container>
@@ -56,10 +54,10 @@ function Calendar({
                 <span>
                   {inputEventType === 'setDatesByDay'
                     ? startDateOfWeek
-                      ? handleDateFormat(startDateOfWeek)
+                      ? handleDateFormat(startDateOfWeek, dateOptions)
                       : startDateOfWeek
                     : dateSelected
-                    ? handleDateFormat(dateSelected)
+                    ? handleDateFormat(dateSelected, dateOptions)
                     : dateSelected}
                 </span>
               </strong>

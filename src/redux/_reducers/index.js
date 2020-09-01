@@ -30,6 +30,9 @@ function rootReducer(state = {}, action) {
     case responseTypes.STORE_EVENTS_DATA:
       return Object.assign({}, state, {
         holidays: action.payload,
+        holidayKeys: Object.keys(action.payload || []).sort(function (a, b) {
+          return a - b;
+        }),
       });
     case errorTypes.STORE_EVENTS_DATA_ERROR:
       return Object.assign({}, state, {

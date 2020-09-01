@@ -7,7 +7,7 @@ import {
   storeEventsData,
   storeEventsDataError,
 } from './creators';
-import { getDateOfWeek, dateFormat, getDateRange, days } from './helper';
+import { getDateOfWeek, dateFormat, getDateRange, days } from '../../helper';
 import { getEvents } from '../../services/_api/request.js';
 
 async function getEventsRequest(

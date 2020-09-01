@@ -1,20 +1,15 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { connect } from 'react-redux';
+import { days } from '../../helper';
 import PropTypes from 'prop-types';
 
-function handleDateFormat(dateObj) {
-  console.log('Date format Item', dateObj.date);
-  return new Intl.DateTimeFormat(undefined, {
-    year: 'numeric',
-    month: 'numeric',
-    day: '2-digit',
-  }).format(new Date(dateObj.date));
-}
-function CalendarItem({ holidayDate, holidayTypes, daySelected }) {
+
+function CalendarItem({ holidayDate, holidayTypes }) {
   const holidayDay = holidayDate ? new Date(holidayDate.date).getDate() : null;
-  console.log('Calendar Item', holidayDate);
+  const holidayDayOfWeek = holidayDate
+    ? new Date(holidayDate.date).getDay()
+    : null;
   const getEvents = (holidayTypes || []).map((type) => {
     return (
       <Card
@@ -37,34 +32,24 @@ function CalendarItem({ holidayDate, holidayTypes, daySelected }) {
       <div className='w-100 h-25 d-inline-block'>
         <p
           style={{
-            backgroundColor: '#346175',
-            color: '#d6dfe3',
+            border: '#d6dfe3 0.5px solid',
+            color: '#346175',
             textAlign: 'center',
           }}
         >
-          {handleDateFormat(holidayDate)}
+         <strong>{days[holidayDayOfWeek]}</strong>  <br />
+          {holidayDay}
         </p>
       </div>
       <div className='w-100 h-75 d-inline-block py-3 px-1'>
-        {holidayTypes ? (
-          getEvents
-        ) : (
-          <h5
-            className='py-3'
-            style={{ textAlign: 'center', color: '#4987a4' }}
-          >
-            {holidayDay}
-          </h5>
-        )}
+        {holidayTypes ? getEvents : null}
       </div>
     </Col>
   ) : null;
 }
 
-function mapStateToProps(state) {
-  return {
-    daySelected: state.daySelected,
-  };
-}
-
-export default connect(mapStateToProps, null)(CalendarItem);
+CalendarItem.propTypes = {
+  holidayDate: PropTypes.object,
+  holidayTypes: PropTypes.array
+};
+export default CalendarItem;

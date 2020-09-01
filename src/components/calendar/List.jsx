@@ -4,32 +4,35 @@ import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import CalendarItem from './Item';
 
-function CalendarList({ holidays }) {
-  const getCalendarList = Object.keys(holidays).map((item) => {
+function CalendarList({ holidays, holidayKeys}) {
+  const getCalendarList = (holidayKeys|| []).map((item) => {
     const holidayDate = holidays[item].holidayDate;
     const holidayTypes = holidays[item].holidayType;
     return (
-        <CalendarItem  key={item} holidayTypes={holidayTypes} holidayDate={holidayDate} />
+      <CalendarItem
+        key={item}
+        holidayTypes={holidayTypes}
+        holidayDate={holidayDate}
+      />
     );
   });
-  return (
-    <Row className='my-4'>
-      {getCalendarList}
-    </Row>
-  );
+  return <Row>{getCalendarList}</Row>;
 }
 
 CalendarList.propTypes = {
   holidays: PropTypes.object,
+  holidayKeys: PropTypes.object
 };
 
 CalendarList.defaultProps = {
   holidays: {},
+  holidayKeys: []
 };
 
 function mapStateToProps(state) {
   return {
     holidays: state.holidays,
+    holidayKeys: state.holidayKeys
   };
 }
 
