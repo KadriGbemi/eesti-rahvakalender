@@ -9,5 +9,9 @@ module.exports = {
       jsx: true
     }
   },
-  rules: { "react/prop-types": ["error", { skipUndeclared: true }] }
+  rules: {
+    "no-undef": 0,
+    "no-console": "error",
+    "react/prop-types": ["error", { skipUndeclared: true }]
+  }
 };
