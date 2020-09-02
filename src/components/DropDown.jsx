@@ -52,7 +52,7 @@ function DropDownComponent({
 }
 
 DropDownComponent.propTypes = {
-  daySelected: PropTypes.any,
+  daySelected: PropTypes.object,
   holidays: PropTypes.object,
   holidayKeys: PropTypes.array,
   setDatesByDay: PropTypes.func

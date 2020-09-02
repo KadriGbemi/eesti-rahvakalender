@@ -45,7 +45,7 @@ function ButtonComponent({
 ButtonComponent.propTypes = {
   name: PropTypes.string.isRequired,
   updateDates: PropTypes.func.isRequired,
-  dateSelected: PropTypes.any,
+  dateSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   daySelected: PropTypes.object,
   inputEventType: PropTypes.string
 };

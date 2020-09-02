@@ -12,17 +12,17 @@ import PropTypes from "prop-types";
 function handleDateDisplay(data) {
   return data ? handleDateFormat(data, dateOptions) : data;
 }
-function WeekMenu({ startDateOfWeek, dateSelected, inputEventType }) {
+function WeekMenu({ startDateOfWeek, endDateOfWeek }) {
   return (
     <Col xs={6} sm={9} md={6}>
       <Row className="justify-content-end">
         <Button name="Previous" />
-        <strong className="mx-2 my-2">
+        <strong className="mx-3 my-2">
           {" "}
           <span>
-            {inputEventType === "setDatesByDay"
-              ? handleDateDisplay(startDateOfWeek)
-              : handleDateDisplay(dateSelected)}
+            {handleDateDisplay(startDateOfWeek) +
+              " to " +
+              handleDateDisplay(endDateOfWeek)}
           </span>
         </strong>
         <Button name="Next" />
@@ -36,15 +36,16 @@ WeekMenu.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(Date)
   ]),
-  dateSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  inputEventType: PropTypes.string
+  endDateOfWeek: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Date)
+  ])
 };
 
 function mapStateToProps(state) {
   return {
-    dateSelected: state.dateSelected,
     startDateOfWeek: state.startDateOfWeek,
-    inputEventType: state.inputEventType
+    endDateOfWeek: state.endDateOfWeek
   };
 }
 
