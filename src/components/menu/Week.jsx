@@ -14,7 +14,7 @@ function handleDateDisplay(data) {
 }
 function WeekMenu({ startDateOfWeek, endDateOfWeek }) {
   return (
-    <Col xs={6} sm={9} md={6}>
+    <Col xs={7} md={8}>
       <Row className="justify-content-end">
         <Button name="Previous" />
         <strong className="mx-3 my-2">
