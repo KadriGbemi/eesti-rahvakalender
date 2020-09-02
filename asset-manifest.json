@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/events-calendar/static/css/main.1851f714.chunk.css",
-    "main.js": "/events-calendar/static/js/main.84475854.chunk.js",
-    "main.js.map": "/events-calendar/static/js/main.84475854.chunk.js.map",
+    "main.js": "/events-calendar/static/js/main.5a6bd7c2.chunk.js",
+    "main.js.map": "/events-calendar/static/js/main.5a6bd7c2.chunk.js.map",
     "runtime-main.js": "/events-calendar/static/js/runtime-main.870400ac.js",
     "runtime-main.js.map": "/events-calendar/static/js/runtime-main.870400ac.js.map",
     "static/js/2.380a40c3.chunk.js": "/events-calendar/static/js/2.380a40c3.chunk.js",
     "static/js/2.380a40c3.chunk.js.map": "/events-calendar/static/js/2.380a40c3.chunk.js.map",
     "index.html": "/events-calendar/index.html",
-    "precache-manifest.38b5ca97161d350867cb20f75535d4e4.js": "/events-calendar/precache-manifest.38b5ca97161d350867cb20f75535d4e4.js",
+    "precache-manifest.52ef65e0f09b2841578abde30900c1d0.js": "/events-calendar/precache-manifest.52ef65e0f09b2841578abde30900c1d0.js",
     "service-worker.js": "/events-calendar/service-worker.js",
     "static/css/main.1851f714.chunk.css.map": "/events-calendar/static/css/main.1851f714.chunk.css.map",
     "static/js/2.380a40c3.chunk.js.LICENSE.txt": "/events-calendar/static/js/2.380a40c3.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.870400ac.js",
     "static/js/2.380a40c3.chunk.js",
     "static/css/main.1851f714.chunk.css",
-    "static/js/main.84475854.chunk.js"
+    "static/js/main.5a6bd7c2.chunk.js"
   ]
 }
