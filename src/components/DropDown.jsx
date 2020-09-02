@@ -1,41 +1,41 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import PropTypes from 'prop-types';
-import { setDatesByDay } from '../redux/_actions/';
-import { handleDateFormat } from '../helper';
+import React from "react";
+import { connect } from "react-redux";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import PropTypes from "prop-types";
+import { setDatesByDay } from "../redux/_actions/";
+import { handleDateFormat } from "../helper";
 
 function DropDownComponent({
   holidays,
   daySelected,
   setDatesByDay,
-  holidayKeys,
+  holidayKeys
 }) {
   function handleDateDisplay(dateInput) {
     return (
       dateInput.day +
-      ' - ' +
+      " - " +
       handleDateFormat(dateInput, {
-        month: 'short',
-        day: 'numeric',
+        month: "short",
+        day: "numeric"
       })
     );
   }
   return (
     <DropdownButton
-      id='dropdown-basic-button'
-      variant='outline-primary'
+      id="dropdown-basic-button"
+      variant="outline-primary"
       title={handleDateDisplay(daySelected)}
     >
-      {(holidayKeys || []).map((item) => {
+      {(holidayKeys || []).map(item => {
         const holidayDate = holidays[item].holidayDate;
         return (
           <Dropdown.Item
             key={item}
-            onClick={(e) => {
+            style={{ color: "#318FCE" }}
+            onClick={e => {
               e.preventDefault();
-              console.log('Clicked');
               setDatesByDay(holidayDate);
             }}
           >
@@ -53,17 +53,22 @@ function DropDownComponent({
 
 DropDownComponent.propTypes = {
   daySelected: PropTypes.any,
+  holidays: PropTypes.object,
+  holidayKeys: PropTypes.array,
+  setDatesByDay: PropTypes.func
 };
 
 DropDownComponent.defaultProps = {
-  daySelected: { day: 'Mon', date: new Date() },
+  daySelected: { day: "Mon", date: new Date() },
   holidays: {},
+  holidayKeys: [],
+  setDatesByDay: () => {}
 };
 function mapStateToProps(state) {
   return {
     holidays: state.holidays,
     holidayKeys: state.holidayKeys,
-    daySelected: state.daySelected,
+    daySelected: state.daySelected
   };
 }
 

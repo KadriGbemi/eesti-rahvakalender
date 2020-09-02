@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux';
-import CalendarPage from './pages/Calendar';
-import store from './redux/_store';
+import React from "react";
+import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import CalendarPage from "./pages/Calendar";
+import store from "./redux/_store";
 
-import './index.scss';
+import "./index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <CalendarPage />
+      <CalendarPage />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

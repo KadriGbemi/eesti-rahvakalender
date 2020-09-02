@@ -7,7 +7,8 @@ module.exports = {
     sourceType: "module",
     ecmaFeatures: {
       jsx: true
-    }
+    },
+    allowImportExportEverywhere: true
   },
   rules: {
     "no-undef": 0,

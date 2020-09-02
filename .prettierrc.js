@@ -6,8 +6,10 @@ module.exports = {
   singleQuote: false,
   jsxSingleQuote: false,
   trailingComma: "none",
+  stylelintIntegration: true,
   bracketSpacing: true,
   jsxBracketSameLine: false,
   arrowParens: "avoid",
-  endOfLine: "auto"
+  endOfLine: "auto",
+  eslintIntegration: true
 };

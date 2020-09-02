@@ -1,11 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Row from 'react-bootstrap/Row';
-import CalendarItem from './Item';
+import React from "react";
+import { connect } from "react-redux";
 
-function CalendarList({ holidays, holidayKeys}) {
-  const getCalendarList = (holidayKeys|| []).map((item) => {
+import Row from "react-bootstrap/Row";
+import CalendarItem from "./Item";
+
+import PropTypes from "prop-types";
+function CalendarList({ holidays, holidayKeys }) {
+  const getCalendarList = (holidayKeys || []).map(item => {
     const holidayDate = holidays[item].holidayDate;
     const holidayTypes = holidays[item].holidayType;
     return (
@@ -16,12 +17,12 @@ function CalendarList({ holidays, holidayKeys}) {
       />
     );
   });
-  return <Row>{getCalendarList}</Row>;
+  return <Row className="mx-2 mx-md-0 ">{getCalendarList}</Row>;
 }
 
 CalendarList.propTypes = {
   holidays: PropTypes.object,
-  holidayKeys: PropTypes.object
+  holidayKeys: PropTypes.array
 };
 
 CalendarList.defaultProps = {

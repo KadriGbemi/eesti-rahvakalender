@@ -1,36 +1,37 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import { connect } from 'react-redux';
-import { updateDates } from '../redux/_actions';
-import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
-import PropTypes from 'prop-types';
+import React from "react";
+import Button from "react-bootstrap/Button";
+import { connect } from "react-redux";
+import { updateDates } from "../redux/_actions";
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
+import PropTypes from "prop-types";
 
 function ButtonComponent({
   name,
   updateDates,
   dateSelected,
   inputEventType,
-  daySelected,
+  daySelected
 }) {
   return (
     <Button
-      variant='outline-primary'
-      onClick={(evt) => {
+      variant="outline-primary"
+      onClick={evt => {
         evt.preventDefault();
-        console.log('Onclick', daySelected);
-        console.log('Onclick name', name);
-        console.log('Onclick inputEventType', inputEventType);
-        inputEventType === 'setDatesByDate' || name === 'Today'
-          ? updateDates(name === 'Today'? new Date() : dateSelected, name, inputEventType)
+        inputEventType === "setDatesByDate" || name === "Today"
+          ? updateDates(
+              name === "Today" ? new Date() : dateSelected,
+              name,
+              inputEventType
+            )
           : updateDates(daySelected, name, inputEventType);
       }}
     >
-      {name === 'Previous' ? (
+      {name === "Previous" ? (
         <span>
-          {' '}
+          {" "}
           <AiOutlineDoubleLeft /> {name}
         </span>
-      ) : name === 'Today' ? (
+      ) : name === "Today" ? (
         name
       ) : (
         <span>
@@ -44,12 +45,15 @@ function ButtonComponent({
 ButtonComponent.propTypes = {
   name: PropTypes.string.isRequired,
   updateDates: PropTypes.func.isRequired,
-  inputEventType: PropTypes.string,
+  dateSelected: PropTypes.any,
+  daySelected: PropTypes.object,
+  inputEventType: PropTypes.string
 };
 
 ButtonComponent.defaultProps = {
   inputEventType: null,
   daySelected: {},
+  dateSelected: {}
 };
 
 function mapStateToProps(state) {
@@ -58,7 +62,7 @@ function mapStateToProps(state) {
     inputEventType: state.inputEventType,
     daySelected: state.daySelected,
     startDateOfWeek: state.startDateOfWeek,
-    endDateOfWeek: state.endDateOfWeek,
+    endDateOfWeek: state.endDateOfWeek
   };
 }
 
